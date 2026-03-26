@@ -11,7 +11,7 @@ connectMongoDB("mongodb://127.0.0.1:27017/practise")
 
 
   const userRoutes = require("./routes/user");
-app.use("/api/users", userRoutes);
+app.use("/api", userRoutes);
 
 
 
