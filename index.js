@@ -1,5 +1,7 @@
 const express = require("express");
+const userData = require('./data.json')
 const { connectMongoDB } = require("./connect");
+
 
 const app = express();
 

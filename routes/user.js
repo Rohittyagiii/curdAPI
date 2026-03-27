@@ -12,6 +12,12 @@ router.get("/users", async(req,res) => {
     res.json({status:"Get all Users"},users);
 })
 
+router.post("/users", async(req,res) => {
+  const user = new User(req.body)
+    const savedUser = await user.save();
+     res.status(201).json(savedUser);
+});
+
 
 
 module.exports = router;
