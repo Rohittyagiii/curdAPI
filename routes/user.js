@@ -44,6 +44,22 @@ router.delete("/deleteByID", async (req, res) => {
        msg: "User deleted successfully",
       user: deletedUser,
     });
+
+    router.patch("/updateUser",async(req,res) => {
+      const  {updateUser} = req.params;
+
+      if(!updateUser){
+        return res.status(400).json({
+          msg:"The User is not updated"
+        })
+      }
+
+      const userUpdated = await User.findByIdAndUpdate(updateUser);
+      res.json({
+        msg:"User Updated Successfully",
+        user:userUpdated,
+      })
+    })
   
 });
 
