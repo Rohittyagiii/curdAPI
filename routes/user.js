@@ -45,8 +45,9 @@ router.delete("/deleteByID", async (req, res) => {
       user: deletedUser,
     });
 
-    router.patch("/updateUser",async(req,res) => {
-      const  {updateUser} = req.params;
+    router.patch("/updateUser/:id",async(req,res) => {
+       const { id } = req.params;
+    const updateData = req.body;
 
       if(!updateUser){
         return res.status(400).json({
@@ -54,7 +55,12 @@ router.delete("/deleteByID", async (req, res) => {
         })
       }
 
-      const userUpdated = await User.findByIdAndUpdate(updateUser);
+      const userUpdated = await User.findByIdAndUpdate(
+      id,
+      updateData,
+      { new: true, runValidators: true }
+    );
+
       res.json({
         msg:"User Updated Successfully",
         user:userUpdated,
