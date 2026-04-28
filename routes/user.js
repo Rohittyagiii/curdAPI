@@ -51,6 +51,44 @@ router.post("/addusers", async (req, res) => {
   }
 });
 
+//login 
+router.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email) {
+  return res.status(400).json({
+    msg: "Email is required",
+  });
+}
+
+if (!password) {
+  return res.status(400).json({
+    msg: "Password cannot be empty",
+  });
+}
+
+if (!email || !password) {
+      return res.status(400).json({
+        msg: "Email and password are required",
+      });
+    }
+  
+
+    res.status(200).json({
+      success: true,
+      msg: "Login Successfully",
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      msg: "Server error",
+    });
+  }
+});
+ 
+
 // delete user
 router.delete("/deleteByID", async (req, res) => {
   try {
